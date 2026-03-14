@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Balat Mimarlık</title>
+<meta name="description" content="Balat Mimarlık, mimari, iç mimarlık ve müteahhitlik projelerinde modern çözümler sunar.">
+<meta name="keywords" content="Balat Mimarlık, mimarlık, iç mimarlık, müteahhitlik, danışmanlık, İstanbul, projeler">
+<meta property="og:title" content="Balat Mimarlık">
+<meta property="og:description" content="Mimari, iç mimarlık ve müteahhitlik projelerinde modern çözümler sunar.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://balatmimarlik.com">
+<meta property="og:image" content="https://balatmimarlik.com/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Balat Mimarlık">
+<meta name="twitter:description" content="Mimari, iç mimarlık ve müteahhitlik projelerinde modern çözümler sunar.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;scroll-behavior:smooth}
+body{margin:0;font-family:'Inter',sans-serif;background:#fff;color:#111;-webkit-font-smoothing:antialiased;transition:.3s}
+header{position:sticky;top:0;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);display:flex;justify-content:space-between;align-items:center;padding:18px 60px;border-bottom:1px solid #eee;z-index:10}
+.logo img{height:40px}
+nav a{margin:0 16px;text-decoration:none;color:#333;font-size:14px}
+.hero{height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px;background:url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;position:relative}
+.hero::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.75);}
+.hero>div{position:relative;z-index:1}
+.hero h1{font-size:64px;font-weight:600;margin:0}
+.hero p{font-size:20px;color:#666;margin-top:20px}
+.hero button{margin-top:40px;padding:14px 28px;border-radius:30px;border:none;background:#111;color:#fff;font-size:14px;cursor:pointer}
+section{padding:120px 8vw}
+.section-title{font-size:40px;margin-bottom:60px;font-weight:600}
+.about{max-width:900px;font-size:20px;line-height:1.6;color:#444}
+.services{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:30px}
+.service{padding:40px;border-radius:16px;background:#f7f7f7;transition:.3s}
+.service:hover{transform:translateY(-6px)}
+.service h3{margin-top:0;font-size:22px}
+.service p{color:#666}
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px}
+.project{height:260px;border-radius:20px;overflow:hidden;position:relative;cursor:pointer}
+.project img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.project:hover img{transform:scale(1.08)}
+.project span{position:absolute;bottom:16px;left:20px;font-size:16px;font-weight:500;background:white;padding:6px 12px;border-radius:20px}
+.filter-bar{margin-bottom:30px;text-align:center}
+.filter-bar button{margin:5px;padding:8px 16px;border:none;border-radius:20px;background:#eee;cursor:pointer;transition:.3s}
+.filter-bar button.active{background:#111;color:#fff}
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:100}
+.modal-content{
+background:white;
+padding:40px;
+border-radius:16px;
+max-width:800px;
+width:90%;
+position:relative;
+max-height:90vh;      
+overflow-y:auto;    
+}
+.modal-content h3{margin-top:0}
+.modal-close{position:absolute;top:16px;right:16px;font-size:20px;cursor:pointer}
+.contact{background:#fafafa;text-align:center}
+.contact p{font-size:18px;color:#555}
+.contact button{margin-top:30px;padding:14px 30px;border-radius:30px;border:none;background:#111;color:#fff}
+.map{margin-top:50px;border-radius:16px;overflow:hidden}
+footer{padding:40px;text-align:center;color:#777;font-size:14px}
+.whatsapp{position:fixed;bottom:25px;right:25px;background:#25D366;color:white;padding:14px 18px;border-radius:50px;font-size:14px;text-decoration:none;box-shadow:0 10px 25px rgba(0,0,0,.15)}
+.menu-toggle{
+display:none;
+font-size:26px;
+cursor:pointer;
+}
+
+@media(max-width:768px){
+
+.menu-toggle{
+display:block;
+z-index:20;
+}
+
+nav{
+position:fixed;
+top:0;
+right:-100%;
+width:75%;
+height:100vh;
+background:white;
+display:flex;
+flex-direction:column;
+padding-top:80px;
+transition:0.4s;
+box-shadow:-10px 0 30px rgba(0,0,0,0.1);
+}
+
+nav a{
+padding:18px 30px;
+font-size:16px;
+border-bottom:1px solid #eee;
+}
+
+nav.active{
+right:0;
+}
+
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Balat Mimarlık",
+  "url": "https://balatmimarlik.com",
+  "logo": "https://balatmimarlik.com/logo.png",
+  "sameAs": [],
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "email": "info@balatmimarlik.com",
+    "contactType": "customer support"
+  }]
+}
+</script>
+</head>
+<body>
+<header>
+<div class="logo"><img src="images/balatlogo.png" alt="Balat Mimarlık Logo"></div>
+
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+<nav id="nav-menu">
+<a href="#about">Hakkımızda</a>
+<a href="#services">Hizmetler</a>
+<a href="#arch-projects">Mimari Projeler</a>
+<a href="#interior-projects">İç Mimari Projeler</a>
+<a href="#ongoing-projects">Devam Eden</a>
+<a href="#completed-projects">Tamamlanan</a>
+<a href="#team">Ekip</a>
+<a href="#consulting">Danışmanlık</a>
+<a href="#blog">Blog</a>
+<a href="#contact">İletişim</a>
+</nav>
+</header>
+<section class="hero">
+<div>
+<h1>Mimarlıkta Modern Yaklaşım</h1>
+<p>Mimarlık • İç Mimarlık • Müteahhitlik • Danışmanlık</p>
+<button onclick="document.getElementById('arch-projects').scrollIntoView()">Projelerimizi Keşfedin</button>
+</div>
+</section>
+<section id="about">
+<h2 class="section-title">Balat Mimarlık</h2>
+<div class="about">Balat Mimarlık; mimari tasarım, iç mimarlık, müteahhitlik ve proje danışmanlığı alanlarında faaliyet gösteren modern bir mimarlık ofisidir. Estetik, işlevsellik ve sürdürülebilir mimari yaklaşımı bir araya getirerek çağdaş yaşam alanları tasarlıyoruz.</div>
+</section>
+<section id="services">
+<h2 class="section-title">Hizmetler</h2>
+<div class="services">
+<div class="service"><h3>Mimarlık</h3><p>Konut, ticari ve karma projeler için mimari tasarım hizmetleri.</p></div>
+<div class="service"><h3>İç Mimarlık</h3><p>Yaşam alanlarını estetik ve fonksiyonel çözümlerle yeniden tasarlıyoruz.</p></div>
+<div class="service"><h3>Müteahhitlik</h3><p>Anahtar teslim konut ve ticari yapı projeleri.</p></div>
+<div class="service"><h3>Danışmanlık</h3><p>Arsa geliştirme, imar analizi ve proje danışmanlığı.</p></div>
+</div>
+</section>
+<section id="arch-projects">
+<h2 class="section-title">Mimari Projeler</h2>
+<div class="filter-bar" id="arch-filters">
+<button class="active" onclick="filterProjects('arch','all',this)">Tümü</button>
+<button onclick="filterProjects('arch','konut',this)">Konut</button>
+<button onclick="filterProjects('arch','villa',this)">Villa</button>
+<button onclick="filterProjects('arch','ticari',this)">Ticari</button>
+</div>
+<div class="projects" id="arch-gallery"></div>
+</section>
+<section id="interior-projects">
+<h2 class="section-title">İç Mimari Projeler</h2>
+<div class="filter-bar" id="interior-filters">
+<button class="active" onclick="filterProjects('interior','all',this)">Tümü</button>
+<button onclick="filterProjects('interior','konut',this)">Konut</button>
+<button onclick="filterProjects('interior','ofis',this)">Ofis</button>
+<button onclick="filterProjects('interior','mağaza',this)">Mağaza</button>
+<button onclick="filterProjects('interior','villa2',this)">Villa</button>
+<button onclick="filterProjects('interior','cafe',this)">Cafe</button>
+</div>
+</section>
+<div class="projects" id="interior-gallery"></div>
+</section>
+<section id="ongoing-projects">
+<h2 class="section-title">Devam Eden Projeler</h2>
+<div class="projects" id="ongoing-gallery"></div>
+</section>
+<section id="completed-projects">
+<h2 class="section-title">Tamamlanan Projeler</h2>
+<div class="projects" id="completed-gallery"></div>
+</section>
+<section id="team">
+<h2 class="section-title">Ekip Arkadaşlarımız</h2>
+<div class="services" id="team-gallery"></div>
+</section>
+<section id="consulting">
+<h2 class="section-title">Danışmanlık</h2>
+<div class="consulting">Arsa sahipleri ve yatırımcılar için proje geliştirme, imar analizi, mimari konsept geliştirme ve ruhsat süreçleri dahil olmak üzere kapsamlı danışmanlık hizmetleri sunuyoruz.</div>
+</section>
+<section id="blog">
+<h2 class="section-title">Mimarlık Yazıları</h2>
+<div class="blog-grid">
+<div class="blog-card"><h4>2026 Mimarlık Trendleri</h4><p>Modern mimaride öne çıkan tasarım yaklaşımları.</p></div>
+<div class="blog-card"><h4>Kentsel Dönüşüm Süreci</h4><p>Türkiye'de kentsel dönüşüm adımları ve süreçleri.</p></div>
+<div class="blog-card"><h4>İç Mimarlıkta Yeni Yaklaşımlar</h4><p>Fonksiyonel ve estetik iç mekan tasarımları.</p></div>
+</div>
+</section>
+<section id="contact" class="contact">
+<h2 class="section-title">İletişim</h2>
+<p>info@balatmimarlik.com</p>
+<p>📍 Fatih, Umutreis Cad. ATİRUS İş Merkezi No:2 Kat:4 İç Kapı:94-95
+34535 Büyükçekmece</p>
+<p>İstanbul / Türkiye</p>
+<button onclick="window.open('https://wa.me/905335838775?text=Merhaba%2C%20Balat%20Mimarlık%20ile%20iletişime%20geçmek%20istiyorum.','_blank')">İletişime Geç</button>
+<div class="map-box">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12044.50087339532!2d28.5350759!3d41.0006324!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb8d0dec316ddca47!2sBalat%20Mimarl%C4%B1k!5e0!3m2!1str!2str!4v1671179772792!5m2!1str!2str" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+</section>
+<footer>© 2026 Balat Mimarlık</footer>
+<a class="whatsapp" href="https://wa.me/905335838775?text=Merhaba%2C%20Balat%20Mimarlık%20ile%20iletişime%20geçmek%20istiyorum." target="_blank">WhatsApp</a>
+<div class="modal" id="project-modal"><div class="modal-content"><span class="modal-close" onclick="closeModal()">&times;</span><h3 id="modal-title"></h3><p id="modal-details"></p><div id="modal-images"></div></div></div>
+<script>
+const projects = {
+  arch: [ 
+  
+    {
+      title: 'Bahçeköy Konut',
+      details: 'İstanbul, 1200 m², 2024',
+      category: 'konut',
+      images: ['images/Bahcekoy_konut/1.jpg','images/Bahcekoy_konut/2.jpg','images/Bahcekoy_konut/3.jpg','images/Bahcekoy_konut/4.jpg']
+    } ,
+     {
+      title: 'Kumköy Sarıyer Villa',
+      details: 'İstanbul, 1200 m², 2024',
+      category: 'villa',
+      images: ['images/kumkoy_sariyer/a.jpg', 'images/kumkoy_sariyer/b.jpg', 'images/kumkoy_sariyer/c.jpg', 'images/kumkoy_sariyer/d.jpg', 'images/kumkoy_sariyer/e.jpg', 'images/kumkoy_sariyer/f.jpg', 'images/kumkoy_sariyer/g.jpg','images/kumkoy_sariyer/h.jpg','images/kumkoy_sariyer/I.jpg',]
+    } ,
+    {
+      title: 'Bahçeşehir Konut',
+      details: 'İstanbul, 1200 m², 2024',
+      category: 'konut',
+      images: ['images/bahcesehir_konut/1-1.jpg','images/bahcesehir_konut/1.jpg','images/bahcesehir_konut/2.jpg','images/bahcesehir_konut/3.jpg','images/bahcesehir_konut/4.jpg','images/bahcesehir_konut/5.jpg','images/bahcesehir_konut/6.jpg','images/bahcesehir_konut/8.jpg','images/bahcesehir_konut/9.jpg','images/bahcesehir_konut/10.jpg','images/bahcesehir_konut/11.jpg', ]} ,
+  {
+        title: 'Toplu Konut',
+        details: 'Istanbul, 3000m2, 2025',
+        category:'konut',
+        images:['images/toplu_konut/1.jpg' ,'images/toplu_konut/2.jpg' ,'images/toplu_konut/3.jpg' ,]
+      },
+       {
+        title:'Modern Villa',
+        details:'Istanbul, 1200m2,2025',
+        category:'villa',
+        images:['images/villa4/1.jpg','images/villa4/2.jpg','images/villa4/3.jpg','images/villa4/4.jpg',]
+  }
+  ],
+  interior: [
+  
+     {
+      title: 'Newista Beylikdüzü',
+      details: 'İstanbul, 450 m², 2025',
+      category: 'konut', 
+      images: ['images/newista_beylikduzu/1.jpg' , 'images/newista_beylikduzu/2.jpg' , 'images/newista_beylikduzu/3.jpg' ,'images/newista_beylikduzu/4.jpg' ,'images/newista_beylikduzu/5.jpg' ,'images/newista_beylikduzu/6.jpg'] 
+    },  {
+      title: 'Acarkent Modern Villa',
+      details: 'İstanbul, 450 m², 2025 - Tamamlanan lüks villa projesi.',
+      category: 'villa2' ,
+      images: ['images/acarkent/acarkent1.jpg' , 'images/acarkent/3.jpg' , 'images/acarkent/4.jpg' , 'images/acarkent/5.jpg' , 'images/acarkent/6.jpg' , 'images/acarkent/7.jpg' , 'images/acarkent/8.jpg' , 'images/acarkent/9.jpg' , 'images/acarkent/10.jpg' , 'images/acarkent/11.jpg' , 'images/acarkent/12.jpg' , 'images/acarkent/13.jpg' , 'images/acarkent/14.jpg' , 'images/acarkent/15.jpg' , 'images/acarkent/16.jpg'] 
+    },
+     {
+      title: 'Cambridge Sahrayıcedit',
+      details: 'İstanbul, 450 m², 2025',
+      category: 'ofis', 
+      images: ['images/cambridge_sahrayicedit/01.jpeg' , 'images/cambridge_sahrayicedit/02.jpg' , 'images/cambridge_sahrayicedit/03.jpg' ,'images/cambridge_sahrayicedit/04.jpg'] 
+    },
+     {
+      title: 'Zekeriyaköy Villa',
+      details: 'İstanbul, 450 m², 2025',
+      category: 'villa2', 
+      images: ['images/zekeriya_koy/salon.jpg' , 'images/zekeriya_koy/mutfak.jpg' ,'images/zekeriya_koy/bedroom.jpg' ] }, 
+      {
+        title:'Başakşehir Daire',
+        details: 'Istanbul, 450m2, 2025',
+        category: 'konut',
+        images:['images/basaksehir_daire/1.jpg','images/basaksehir_daire/2.jpg','images/basaksehir_daire/3.jpg','images/basaksehir_daire/4.jpg','images/basaksehir_daire/5.jpg','images/basaksehir_daire/6.jpg','images/basaksehir_daire/7.jpg',]
+
+      },
+      {
+      title: 'Nişantaşı Cadde Cafe',
+      details: 'İstanbul, 450 m², 2025',
+      category: 'cafe', 
+      images: ['images/nisantasi_cadde_cafe/1.jpg' , 'images/nisantasi_cadde_cafe/2.jpg' , 'images/nisantasi_cadde_cafe/3.jpg' ,'images/nisantasi_cadde_cafe/4.jpg' ,'images/nisantasi_cadde_cafe/5.jpg' ,'images/nisantasi_cadde_cafe/6.jpg'] 
+    },
+     {
+      title: 'Kuaför Salonu',
+      details: 'İstanbul, 450 m², 2025',
+      category: 'magaza', 
+      images: ['images/kuafor_salonu/1.jpg' ,'images/kuafor_salonu/2.jpg' ,'images/kuafor_salonu/3.jpg' ,'images/kuafor_salonu/4.jpg' ,'images/kuafor_salonu/5.jpg' ,'images/kuafor_salonu/6.jpg' , ]},
+  {
+        title: 'Otel Restoran',
+        details: 'Istanbul, 3000m2, 2025',
+        category:'magaza',
+        images:['images/otel_restoran/1.jpg' ,'images/otel_restoran/2.jpg' ,'images/otel_restoran/3.jpg' ,'images/otel_restoran/4.jpg']
+      },
+      
+   { title: 'Spor Salonu Beşiktaş',
+    details: 'Istanbul, 700m2,2025',
+    category: 'cafe',
+    images: ['images/gym_besiktas/1.jpg','images/gym_besiktas/2.jpg','images/gym_besiktas/3.jpg','images/gym_besiktas/4.jpg','images/gym_besiktas/5.jpg','images/gym_besiktas/6.jpg','images/gym_besiktas/7.jpg','images/gym_besiktas/8.jpg','images/gym_besiktas/9.jpg','images/gym_besiktas/10.jpg','images/gym_besiktas/11.jpg','images/gym_besiktas/12.jpg']
+  },
+  { title: 'Nişantaşı Daire',
+    details: 'Istanbul, 400m2,2025',
+    category: 'konut',
+    images: ['images/nisantasi_daire/1.jpg','images/nisantasi_daire/2.jpg','images/nisantasi_daire/3.jpg','images/nisantasi_daire/4.jpg','images/nisantasi_daire/5.jpg','images/nisantasi_daire/6.jpg',]
+},
+{
+  title:'Beylikdüzü Ofis',
+  details:'Istanbul, 250m2,2025',
+  category:'ofis',
+  images: ['images/beylikduzu_ofis/1.jpg','images/beylikduzu_ofis/2.jpg','images/beylikduzu_ofis/3.jpg',]
+},
+{ 
+  title:'Stüdyo Daire',
+  details: 'Istanbul,300m2,2025',
+  category: 'konut',
+  images:['images/studyo_daire/1.jpg','images/studyo_daire/2.jpg','images/studyo_daire/3.jpg','images/studyo_daire/4.jpg',]
+},
+ {
+        title: 'İkitelli Ofis',
+        details: 'Istanbul, 3000m2, 2025',
+        category:'ofis',
+        images:['images/ofis_ikitelli/mode1.jpg' ,'images/ofis_ikitelli/mode2.jpg' ,'images/ofis_ikitelli/mode3.jpg' ,'images/ofis_ikitelli/mode4.jpg']
+      },
+    ],
+ 
+  
+  ongoing: [],
+  completed: []
+};
+function loadGallery(){['arch','interior','ongoing','completed'].forEach(cat=>{
+const container=document.getElementById(cat+'-gallery');
+projects[cat].forEach(p=>{
+const div=document.createElement('div');
+div.className='project';
+div.setAttribute('data-category',p.category);
+div.innerHTML='<img src="'+p.images[0]+'" alt="'+p.title+'"><span>'+p.title+'</span>';
+div.onclick=()=>openProject(p.title,p.details,p.images);
+container.appendChild(div);
+});
+});s
+}
+function filterProjects(cat,category,btn){
+const buttons=document.getElementById(cat+'-filters').querySelectorAll('button');
+buttons.forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+const items=document.getElementById(cat+'-gallery').children;
+for(let i=0;i<items.length;i++){
+if(category==='all'||items[i].getAttribute('data-category')===category){items[i].style.display='block'}else{items[i].style.display='none'}
+}
+}
+function openProject(title,details,images){document.getElementById('modal-title').innerText=title;document.getElementById('modal-details').innerText=details;const imgContainer=document.getElementById('modal-images');imgContainer.innerHTML='';images.forEach(src=>{const img=document.createElement('img');img.src=src;img.style.width='100%';img.style.marginTop='10px';img.alt=title;imgContainer.appendChild(img)});document.getElementById('project-modal').style.display='flex';}
+function closeModal(){document.getElementById('project-modal').style.display='none';}
+window.onload=loadGallery;
+
+function toggleMenu(){
+document.getElementById("nav-menu").classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
