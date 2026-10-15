@@ -1,0 +1,857 @@
+{
+    "surum": 1,
+    "guncelleme": "2026-10-15T18:54:19+00:00",
+    "mimari": [
+        {
+            "id": "kumburgazvilla",
+            "klasor": "kumburgazvilla",
+            "ad": "Kumburgaz Villa",
+            "kategori": "villa",
+            "konum": "İstanbul",
+            "alan": 800,
+            "yil": 2026,
+            "gorseller": [
+                {
+                    "b": "/images/kumburgazvilla/01.webp",
+                    "k": "/images/_kucuk/kumburgazvilla/01.jpg"
+                },
+                {
+                    "b": "/images/kumburgazvilla/02.webp",
+                    "k": "/images/_kucuk/kumburgazvilla/02.jpg"
+                },
+                {
+                    "b": "/images/kumburgazvilla/03.webp",
+                    "k": "/images/_kucuk/kumburgazvilla/03.jpg"
+                },
+                {
+                    "b": "/images/kumburgazvilla/04.webp",
+                    "k": "/images/_kucuk/kumburgazvilla/04.jpg"
+                },
+                {
+                    "b": "/images/kumburgazvilla/05.webp",
+                    "k": "/images/_kucuk/kumburgazvilla/05.jpg"
+                }
+            ]
+        },
+        {
+            "id": "mithatakinci",
+            "klasor": "mithatakinci",
+            "ad": "Büyükçekmece Konut",
+            "kategori": "konut",
+            "konum": "İstanbul",
+            "alan": 3000,
+            "yil": 2025,
+            "gorseller": [
+                {
+                    "b": "/images/mithatakinci/001.webp",
+                    "k": "/images/mithatakinci/001.webp"
+                },
+                {
+                    "b": "/images/mithatakinci/002.webp",
+                    "k": "/images/mithatakinci/002.webp"
+                },
+                {
+                    "b": "/images/mithatakinci/003.webp",
+                    "k": "/images/mithatakinci/003.webp"
+                },
+                {
+                    "b": "/images/mithatakinci/004.webp",
+                    "k": "/images/mithatakinci/004.webp"
+                },
+                {
+                    "b": "/images/mithatakinci/005.webp",
+                    "k": "/images/mithatakinci/005.webp"
+                },
+                {
+                    "b": "/images/mithatakinci/006.webp",
+                    "k": "/images/mithatakinci/006.webp"
+                },
+                {
+                    "b": "/images/mithatakinci/007.webp",
+                    "k": "/images/mithatakinci/007.webp"
+                },
+                {
+                    "b": "/images/mithatakinci/008.webp",
+                    "k": "/images/mithatakinci/008.webp"
+                },
+                {
+                    "b": "/images/mithatakinci/009.webp",
+                    "k": "/images/mithatakinci/009.webp"
+                },
+                {
+                    "b": "/images/mithatakinci/010.webp",
+                    "k": "/images/_kucuk/mithatakinci/010.jpg"
+                }
+            ]
+        },
+        {
+            "id": "bahcekoy-konut",
+            "klasor": "Bahcekoy_konut",
+            "ad": "Bahçeköy Konut",
+            "kategori": "konut",
+            "konum": "İstanbul",
+            "alan": 1200,
+            "yil": 2024,
+            "gorseller": [
+                {
+                    "b": "/images/Bahcekoy_konut/1_result.webp",
+                    "k": "/images/_kucuk/Bahcekoy_konut/1_result.jpg"
+                },
+                {
+                    "b": "/images/Bahcekoy_konut/2_result.webp",
+                    "k": "/images/_kucuk/Bahcekoy_konut/2_result.jpg"
+                },
+                {
+                    "b": "/images/Bahcekoy_konut/3_result.webp",
+                    "k": "/images/_kucuk/Bahcekoy_konut/3_result.jpg"
+                },
+                {
+                    "b": "/images/Bahcekoy_konut/4_result.webp",
+                    "k": "/images/_kucuk/Bahcekoy_konut/4_result.jpg"
+                }
+            ]
+        },
+        {
+            "id": "kumkoy-sariyer",
+            "klasor": "kumkoy_sariyer",
+            "ad": "Kumköy Sarıyer Villa",
+            "kategori": "villa",
+            "konum": "İstanbul",
+            "alan": 1200,
+            "yil": 2024,
+            "gorseller": [
+                {
+                    "b": "/images/kumkoy_sariyer/A_result.webp",
+                    "k": "/images/_kucuk/kumkoy_sariyer/A_result.jpg"
+                },
+                {
+                    "b": "/images/kumkoy_sariyer/B_result.webp",
+                    "k": "/images/_kucuk/kumkoy_sariyer/B_result.jpg"
+                },
+                {
+                    "b": "/images/kumkoy_sariyer/C_result.webp",
+                    "k": "/images/_kucuk/kumkoy_sariyer/C_result.jpg"
+                },
+                {
+                    "b": "/images/kumkoy_sariyer/D_result.webp",
+                    "k": "/images/_kucuk/kumkoy_sariyer/D_result.jpg"
+                },
+                {
+                    "b": "/images/kumkoy_sariyer/E_result.webp",
+                    "k": "/images/_kucuk/kumkoy_sariyer/E_result.jpg"
+                },
+                {
+                    "b": "/images/kumkoy_sariyer/F_result.webp",
+                    "k": "/images/_kucuk/kumkoy_sariyer/F_result.jpg"
+                },
+                {
+                    "b": "/images/kumkoy_sariyer/G_result.webp",
+                    "k": "/images/_kucuk/kumkoy_sariyer/G_result.jpg"
+                },
+                {
+                    "b": "/images/kumkoy_sariyer/H_result.webp",
+                    "k": "/images/_kucuk/kumkoy_sariyer/H_result.jpg"
+                },
+                {
+                    "b": "/images/kumkoy_sariyer/I_result.webp",
+                    "k": "/images/_kucuk/kumkoy_sariyer/I_result.jpg"
+                }
+            ]
+        },
+        {
+            "id": "bahcesehir-konut",
+            "klasor": "bahcesehir_konut",
+            "ad": "Bahçeşehir Konut",
+            "kategori": "konut",
+            "konum": "İstanbul",
+            "alan": 1200,
+            "yil": 2024,
+            "gorseller": [
+                {
+                    "b": "/images/bahcesehir_konut/1_result.webp",
+                    "k": "/images/bahcesehir_konut/1_result.webp"
+                },
+                {
+                    "b": "/images/bahcesehir_konut/2_result.webp",
+                    "k": "/images/bahcesehir_konut/2_result.webp"
+                },
+                {
+                    "b": "/images/bahcesehir_konut/3_result.webp",
+                    "k": "/images/bahcesehir_konut/3_result.webp"
+                },
+                {
+                    "b": "/images/bahcesehir_konut/4_result.webp",
+                    "k": "/images/bahcesehir_konut/4_result.webp"
+                },
+                {
+                    "b": "/images/bahcesehir_konut/5_result.webp",
+                    "k": "/images/bahcesehir_konut/5_result.webp"
+                },
+                {
+                    "b": "/images/bahcesehir_konut/6_result.webp",
+                    "k": "/images/bahcesehir_konut/6_result.webp"
+                },
+                {
+                    "b": "/images/bahcesehir_konut/8_result.webp",
+                    "k": "/images/bahcesehir_konut/8_result.webp"
+                },
+                {
+                    "b": "/images/bahcesehir_konut/9_result.webp",
+                    "k": "/images/bahcesehir_konut/9_result.webp"
+                },
+                {
+                    "b": "/images/bahcesehir_konut/10_result.webp",
+                    "k": "/images/bahcesehir_konut/10_result.webp"
+                },
+                {
+                    "b": "/images/bahcesehir_konut/11_result.webp",
+                    "k": "/images/bahcesehir_konut/11_result.webp"
+                }
+            ]
+        },
+        {
+            "id": "toplu-konut",
+            "klasor": "toplu_konut",
+            "ad": "Toplu Konut",
+            "kategori": "konut",
+            "konum": "İstanbul",
+            "alan": 3000,
+            "yil": 2025,
+            "gorseller": [
+                {
+                    "b": "/images/toplu_konut/1_result.webp",
+                    "k": "/images/_kucuk/toplu_konut/1_result.jpg"
+                },
+                {
+                    "b": "/images/toplu_konut/2_result.webp",
+                    "k": "/images/_kucuk/toplu_konut/2_result.jpg"
+                },
+                {
+                    "b": "/images/toplu_konut/3_result.webp",
+                    "k": "/images/_kucuk/toplu_konut/3_result.jpg"
+                }
+            ]
+        },
+        {
+            "id": "villa4",
+            "klasor": "villa4",
+            "ad": "Modern Villa",
+            "kategori": "villa",
+            "konum": "İstanbul",
+            "alan": 1200,
+            "yil": 2025,
+            "gorseller": [
+                {
+                    "b": "/images/villa4/1_result.webp",
+                    "k": "/images/_kucuk/villa4/1_result.jpg"
+                },
+                {
+                    "b": "/images/villa4/2_result.webp",
+                    "k": "/images/_kucuk/villa4/2_result.jpg"
+                },
+                {
+                    "b": "/images/villa4/3_result.webp",
+                    "k": "/images/_kucuk/villa4/3_result.jpg"
+                },
+                {
+                    "b": "/images/villa4/4_result.webp",
+                    "k": "/images/_kucuk/villa4/4_result.jpg"
+                }
+            ]
+        }
+    ],
+    "ic": [
+        {
+            "id": "acarkent",
+            "klasor": "acarkent",
+            "ad": "Acarkent Modern Villa",
+            "kategori": "villa",
+            "konum": "İstanbul",
+            "alan": null,
+            "yil": 2025,
+            "gorseller": [
+                {
+                    "b": "/images/acarkent/acarkent1_result.webp",
+                    "k": "/images/_kucuk/acarkent/acarkent1_result.jpg"
+                },
+                {
+                    "b": "/images/acarkent/3_result.webp",
+                    "k": "/images/_kucuk/acarkent/3_result.jpg"
+                },
+                {
+                    "b": "/images/acarkent/4_result.webp",
+                    "k": "/images/acarkent/4_result.webp"
+                },
+                {
+                    "b": "/images/acarkent/5_result.webp",
+                    "k": "/images/_kucuk/acarkent/5_result.jpg"
+                },
+                {
+                    "b": "/images/acarkent/6_result.webp",
+                    "k": "/images/acarkent/6_result.webp"
+                },
+                {
+                    "b": "/images/acarkent/7_result.webp",
+                    "k": "/images/_kucuk/acarkent/7_result.jpg"
+                },
+                {
+                    "b": "/images/acarkent/8_result.webp",
+                    "k": "/images/acarkent/8_result.webp"
+                },
+                {
+                    "b": "/images/acarkent/9_result.webp",
+                    "k": "/images/_kucuk/acarkent/9_result.jpg"
+                },
+                {
+                    "b": "/images/acarkent/10_result.webp",
+                    "k": "/images/acarkent/10_result.webp"
+                },
+                {
+                    "b": "/images/acarkent/11_result.webp",
+                    "k": "/images/acarkent/11_result.webp"
+                },
+                {
+                    "b": "/images/acarkent/12_result.webp",
+                    "k": "/images/acarkent/12_result.webp"
+                },
+                {
+                    "b": "/images/acarkent/13_result.webp",
+                    "k": "/images/acarkent/13_result.webp"
+                },
+                {
+                    "b": "/images/acarkent/14_result.webp",
+                    "k": "/images/_kucuk/acarkent/14_result.jpg"
+                },
+                {
+                    "b": "/images/acarkent/15_result.webp",
+                    "k": "/images/acarkent/15_result.webp"
+                },
+                {
+                    "b": "/images/acarkent/16_result.webp",
+                    "k": "/images/acarkent/16_result.webp"
+                }
+            ]
+        },
+        {
+            "id": "merter-tekstil",
+            "klasor": "merter_tekstil",
+            "ad": "Merter Tekstil Mağazası",
+            "kategori": "magaza",
+            "konum": "İstanbul",
+            "alan": 280,
+            "yil": 2018,
+            "gorseller": [
+                {
+                    "b": "/images/merter_tekstil/1.webp",
+                    "k": "/images/merter_tekstil/1.webp"
+                },
+                {
+                    "b": "/images/merter_tekstil/2.webp",
+                    "k": "/images/merter_tekstil/2.webp"
+                },
+                {
+                    "b": "/images/merter_tekstil/3.webp",
+                    "k": "/images/merter_tekstil/3.webp"
+                },
+                {
+                    "b": "/images/merter_tekstil/4.webp",
+                    "k": "/images/merter_tekstil/4.webp"
+                },
+                {
+                    "b": "/images/merter_tekstil/5.webp",
+                    "k": "/images/merter_tekstil/5.webp"
+                },
+                {
+                    "b": "/images/merter_tekstil/6.webp",
+                    "k": "/images/merter_tekstil/6.webp"
+                },
+                {
+                    "b": "/images/merter_tekstil/7.webp",
+                    "k": "/images/merter_tekstil/7.webp"
+                },
+                {
+                    "b": "/images/merter_tekstil/8.webp",
+                    "k": "/images/merter_tekstil/8.webp"
+                },
+                {
+                    "b": "/images/merter_tekstil/9.webp",
+                    "k": "/images/merter_tekstil/9.webp"
+                }
+            ]
+        },
+        {
+            "id": "bakirkoy-cafe-house",
+            "klasor": "bakirkoy_cafe_house",
+            "ad": "Bakırköy Cafe House",
+            "kategori": "cafe",
+            "konum": "İstanbul",
+            "alan": 240,
+            "yil": 2018,
+            "gorseller": [
+                {
+                    "b": "/images/bakirkoy_cafe_house/1_result.webp",
+                    "k": "/images/_kucuk/bakirkoy_cafe_house/1_result.jpg"
+                },
+                {
+                    "b": "/images/bakirkoy_cafe_house/2_result.webp",
+                    "k": "/images/_kucuk/bakirkoy_cafe_house/2_result.jpg"
+                },
+                {
+                    "b": "/images/bakirkoy_cafe_house/3_result.webp",
+                    "k": "/images/_kucuk/bakirkoy_cafe_house/3_result.jpg"
+                },
+                {
+                    "b": "/images/bakirkoy_cafe_house/4_result.webp",
+                    "k": "/images/_kucuk/bakirkoy_cafe_house/4_result.jpg"
+                },
+                {
+                    "b": "/images/bakirkoy_cafe_house/5_result.webp",
+                    "k": "/images/_kucuk/bakirkoy_cafe_house/5_result.jpg"
+                },
+                {
+                    "b": "/images/bakirkoy_cafe_house/6_result.webp",
+                    "k": "/images/_kucuk/bakirkoy_cafe_house/6_result.jpg"
+                }
+            ]
+        },
+        {
+            "id": "newista-beylikduzu",
+            "klasor": "newista_beylikduzu",
+            "ad": "Newista Beylikdüzü",
+            "kategori": "konut",
+            "konum": "İstanbul",
+            "alan": null,
+            "yil": 2025,
+            "gorseller": [
+                {
+                    "b": "/images/newista_beylikduzu/1_result.webp",
+                    "k": "/images/_kucuk/newista_beylikduzu/1_result.jpg"
+                },
+                {
+                    "b": "/images/newista_beylikduzu/2_result.webp",
+                    "k": "/images/_kucuk/newista_beylikduzu/2_result.jpg"
+                },
+                {
+                    "b": "/images/newista_beylikduzu/3_result.webp",
+                    "k": "/images/_kucuk/newista_beylikduzu/3_result.jpg"
+                },
+                {
+                    "b": "/images/newista_beylikduzu/4_result.webp",
+                    "k": "/images/_kucuk/newista_beylikduzu/4_result.jpg"
+                },
+                {
+                    "b": "/images/newista_beylikduzu/5_result.webp",
+                    "k": "/images/_kucuk/newista_beylikduzu/5_result.jpg"
+                },
+                {
+                    "b": "/images/newista_beylikduzu/6_result.webp",
+                    "k": "/images/newista_beylikduzu/6_result.webp"
+                }
+            ]
+        },
+        {
+            "id": "cambridge-sahrayicedit",
+            "klasor": "cambridge_sahrayicedit",
+            "ad": "Cambridge Sahrayıcedit",
+            "kategori": "ofis",
+            "konum": "İstanbul",
+            "alan": null,
+            "yil": 2025,
+            "gorseller": [
+                {
+                    "b": "/images/cambridge_sahrayicedit/01_result.webp",
+                    "k": "/images/cambridge_sahrayicedit/01_result.webp"
+                },
+                {
+                    "b": "/images/cambridge_sahrayicedit/02_result.webp",
+                    "k": "/images/cambridge_sahrayicedit/02_result.webp"
+                },
+                {
+                    "b": "/images/cambridge_sahrayicedit/03_result.webp",
+                    "k": "/images/cambridge_sahrayicedit/03_result.webp"
+                },
+                {
+                    "b": "/images/cambridge_sahrayicedit/04_result.webp",
+                    "k": "/images/cambridge_sahrayicedit/04_result.webp"
+                }
+            ]
+        },
+        {
+            "id": "zekeriya-koy",
+            "klasor": "zekeriya_koy",
+            "ad": "Zekeriyaköy Villa",
+            "kategori": "villa",
+            "konum": "İstanbul",
+            "alan": null,
+            "yil": 2025,
+            "gorseller": [
+                {
+                    "b": "/images/zekeriya_koy/salon_result.webp",
+                    "k": "/images/_kucuk/zekeriya_koy/salon_result.jpg"
+                },
+                {
+                    "b": "/images/zekeriya_koy/mutfak_result.webp",
+                    "k": "/images/_kucuk/zekeriya_koy/mutfak_result.jpg"
+                },
+                {
+                    "b": "/images/zekeriya_koy/bedroom_result.webp",
+                    "k": "/images/_kucuk/zekeriya_koy/bedroom_result.jpg"
+                }
+            ]
+        },
+        {
+            "id": "basaksehir-daire",
+            "klasor": "basaksehir_daire",
+            "ad": "Başakşehir Daire",
+            "kategori": "konut",
+            "konum": "İstanbul",
+            "alan": null,
+            "yil": 2025,
+            "gorseller": [
+                {
+                    "b": "/images/basaksehir_daire/1_result.webp",
+                    "k": "/images/_kucuk/basaksehir_daire/1_result.jpg"
+                },
+                {
+                    "b": "/images/basaksehir_daire/2_result.webp",
+                    "k": "/images/_kucuk/basaksehir_daire/2_result.jpg"
+                },
+                {
+                    "b": "/images/basaksehir_daire/3_result.webp",
+                    "k": "/images/_kucuk/basaksehir_daire/3_result.jpg"
+                },
+                {
+                    "b": "/images/basaksehir_daire/4_result.webp",
+                    "k": "/images/_kucuk/basaksehir_daire/4_result.jpg"
+                },
+                {
+                    "b": "/images/basaksehir_daire/5_result.webp",
+                    "k": "/images/basaksehir_daire/5_result.webp"
+                },
+                {
+                    "b": "/images/basaksehir_daire/6_result.webp",
+                    "k": "/images/_kucuk/basaksehir_daire/6_result.jpg"
+                },
+                {
+                    "b": "/images/basaksehir_daire/7_result.webp",
+                    "k": "/images/_kucuk/basaksehir_daire/7_result.jpg"
+                }
+            ]
+        },
+        {
+            "id": "nisantasi-cadde-cafe",
+            "klasor": "nisantasi_cadde_cafe",
+            "ad": "Nişantaşı Cadde Cafe",
+            "kategori": "cafe",
+            "konum": "İstanbul",
+            "alan": null,
+            "yil": 2025,
+            "gorseller": [
+                {
+                    "b": "/images/nisantasi_cadde_cafe/1_result.webp",
+                    "k": "/images/_kucuk/nisantasi_cadde_cafe/1_result.jpg"
+                },
+                {
+                    "b": "/images/nisantasi_cadde_cafe/2_result.webp",
+                    "k": "/images/_kucuk/nisantasi_cadde_cafe/2_result.jpg"
+                },
+                {
+                    "b": "/images/nisantasi_cadde_cafe/3_result.webp",
+                    "k": "/images/_kucuk/nisantasi_cadde_cafe/3_result.jpg"
+                },
+                {
+                    "b": "/images/nisantasi_cadde_cafe/4_result.webp",
+                    "k": "/images/_kucuk/nisantasi_cadde_cafe/4_result.jpg"
+                },
+                {
+                    "b": "/images/nisantasi_cadde_cafe/5_result.webp",
+                    "k": "/images/_kucuk/nisantasi_cadde_cafe/5_result.jpg"
+                },
+                {
+                    "b": "/images/nisantasi_cadde_cafe/6_result.webp",
+                    "k": "/images/_kucuk/nisantasi_cadde_cafe/6_result.jpg"
+                }
+            ]
+        },
+        {
+            "id": "kuafor-salonu",
+            "klasor": "kuafor_salonu",
+            "ad": "Kuaför Salonu",
+            "kategori": "magaza",
+            "konum": "İstanbul",
+            "alan": null,
+            "yil": 2025,
+            "gorseller": [
+                {
+                    "b": "/images/kuafor_salonu/1_result.webp",
+                    "k": "/images/kuafor_salonu/1_result.webp"
+                },
+                {
+                    "b": "/images/kuafor_salonu/2_result.webp",
+                    "k": "/images/kuafor_salonu/2_result.webp"
+                },
+                {
+                    "b": "/images/kuafor_salonu/3_result.webp",
+                    "k": "/images/kuafor_salonu/3_result.webp"
+                },
+                {
+                    "b": "/images/kuafor_salonu/4_result.webp",
+                    "k": "/images/kuafor_salonu/4_result.webp"
+                },
+                {
+                    "b": "/images/kuafor_salonu/5_result.webp",
+                    "k": "/images/kuafor_salonu/5_result.webp"
+                },
+                {
+                    "b": "/images/kuafor_salonu/6_result.webp",
+                    "k": "/images/kuafor_salonu/6_result.webp"
+                },
+                {
+                    "b": "/images/kuafor_salonu/7_result.webp",
+                    "k": "/images/kuafor_salonu/7_result.webp"
+                }
+            ]
+        },
+        {
+            "id": "otel-restoran",
+            "klasor": "otel_restoran",
+            "ad": "Otel Restoran",
+            "kategori": "cafe",
+            "konum": "İstanbul",
+            "alan": null,
+            "yil": 2025,
+            "gorseller": [
+                {
+                    "b": "/images/otel_restoran/1_result.webp",
+                    "k": "/images/otel_restoran/1_result.webp"
+                },
+                {
+                    "b": "/images/otel_restoran/2_result.webp",
+                    "k": "/images/otel_restoran/2_result.webp"
+                },
+                {
+                    "b": "/images/otel_restoran/3_result.webp",
+                    "k": "/images/otel_restoran/3_result.webp"
+                },
+                {
+                    "b": "/images/otel_restoran/4_result.webp",
+                    "k": "/images/otel_restoran/4_result.webp"
+                }
+            ]
+        },
+        {
+            "id": "gym-besiktas",
+            "klasor": "gym_besiktas",
+            "ad": "Spor Salonu Beşiktaş",
+            "kategori": "magaza",
+            "konum": "İstanbul",
+            "alan": 700,
+            "yil": 2025,
+            "gorseller": [
+                {
+                    "b": "/images/gym_besiktas/1_result.webp",
+                    "k": "/images/gym_besiktas/1_result.webp"
+                },
+                {
+                    "b": "/images/gym_besiktas/2_result.webp",
+                    "k": "/images/gym_besiktas/2_result.webp"
+                },
+                {
+                    "b": "/images/gym_besiktas/3_result.webp",
+                    "k": "/images/gym_besiktas/3_result.webp"
+                },
+                {
+                    "b": "/images/gym_besiktas/4_result.webp",
+                    "k": "/images/gym_besiktas/4_result.webp"
+                },
+                {
+                    "b": "/images/gym_besiktas/5_result.webp",
+                    "k": "/images/gym_besiktas/5_result.webp"
+                },
+                {
+                    "b": "/images/gym_besiktas/6_result.webp",
+                    "k": "/images/gym_besiktas/6_result.webp"
+                },
+                {
+                    "b": "/images/gym_besiktas/7_result.webp",
+                    "k": "/images/gym_besiktas/7_result.webp"
+                },
+                {
+                    "b": "/images/gym_besiktas/8_result.webp",
+                    "k": "/images/gym_besiktas/8_result.webp"
+                },
+                {
+                    "b": "/images/gym_besiktas/9_result.webp",
+                    "k": "/images/gym_besiktas/9_result.webp"
+                },
+                {
+                    "b": "/images/gym_besiktas/10_result.webp",
+                    "k": "/images/gym_besiktas/10_result.webp"
+                },
+                {
+                    "b": "/images/gym_besiktas/11_result.webp",
+                    "k": "/images/gym_besiktas/11_result.webp"
+                },
+                {
+                    "b": "/images/gym_besiktas/12_result.webp",
+                    "k": "/images/gym_besiktas/12_result.webp"
+                }
+            ]
+        },
+        {
+            "id": "nisantasi-daire",
+            "klasor": "nisantasi_daire",
+            "ad": "Nişantaşı Daire",
+            "kategori": "konut",
+            "konum": "İstanbul",
+            "alan": 400,
+            "yil": 2025,
+            "gorseller": [
+                {
+                    "b": "/images/nisantasi_daire/1_result.webp",
+                    "k": "/images/_kucuk/nisantasi_daire/1_result.jpg"
+                },
+                {
+                    "b": "/images/nisantasi_daire/2_result.webp",
+                    "k": "/images/_kucuk/nisantasi_daire/2_result.jpg"
+                },
+                {
+                    "b": "/images/nisantasi_daire/3_result.webp",
+                    "k": "/images/_kucuk/nisantasi_daire/3_result.jpg"
+                },
+                {
+                    "b": "/images/nisantasi_daire/4_result.webp",
+                    "k": "/images/_kucuk/nisantasi_daire/4_result.jpg"
+                },
+                {
+                    "b": "/images/nisantasi_daire/5_result.webp",
+                    "k": "/images/_kucuk/nisantasi_daire/5_result.jpg"
+                },
+                {
+                    "b": "/images/nisantasi_daire/6_result.webp",
+                    "k": "/images/nisantasi_daire/6_result.webp"
+                }
+            ]
+        },
+        {
+            "id": "beylikduzu-ofis",
+            "klasor": "beylikduzu_ofis",
+            "ad": "Beylikdüzü Ofis",
+            "kategori": "ofis",
+            "konum": "İstanbul",
+            "alan": 250,
+            "yil": 2025,
+            "gorseller": [
+                {
+                    "b": "/images/beylikduzu_ofis/1_result.webp",
+                    "k": "/images/_kucuk/beylikduzu_ofis/1_result.jpg"
+                },
+                {
+                    "b": "/images/beylikduzu_ofis/2_result.webp",
+                    "k": "/images/_kucuk/beylikduzu_ofis/2_result.jpg"
+                },
+                {
+                    "b": "/images/beylikduzu_ofis/3_result.webp",
+                    "k": "/images/_kucuk/beylikduzu_ofis/3_result.jpg"
+                }
+            ]
+        },
+        {
+            "id": "studyo-daire",
+            "klasor": "studyo_daire",
+            "ad": "Stüdyo Daire",
+            "kategori": "konut",
+            "konum": "İstanbul",
+            "alan": 300,
+            "yil": 2025,
+            "gorseller": [
+                {
+                    "b": "/images/studyo_daire/1_result.webp",
+                    "k": "/images/_kucuk/studyo_daire/1_result.jpg"
+                },
+                {
+                    "b": "/images/studyo_daire/2_result.webp",
+                    "k": "/images/_kucuk/studyo_daire/2_result.jpg"
+                },
+                {
+                    "b": "/images/studyo_daire/3_result.webp",
+                    "k": "/images/studyo_daire/3_result.webp"
+                },
+                {
+                    "b": "/images/studyo_daire/4_result.webp",
+                    "k": "/images/_kucuk/studyo_daire/4_result.jpg"
+                }
+            ]
+        },
+        {
+            "id": "ofis-ikitelli",
+            "klasor": "ofis_ikitelli",
+            "ad": "İkitelli Ofis",
+            "kategori": "ofis",
+            "konum": "İstanbul",
+            "alan": null,
+            "yil": 2025,
+            "gorseller": [
+                {
+                    "b": "/images/ofis_ikitelli/mode1_result.webp",
+                    "k": "/images/ofis_ikitelli/mode1_result.webp"
+                },
+                {
+                    "b": "/images/ofis_ikitelli/mode2_result.webp",
+                    "k": "/images/ofis_ikitelli/mode2_result.webp"
+                },
+                {
+                    "b": "/images/ofis_ikitelli/mode3_result.webp",
+                    "k": "/images/ofis_ikitelli/mode3_result.webp"
+                },
+                {
+                    "b": "/images/ofis_ikitelli/mode4_result.webp",
+                    "k": "/images/ofis_ikitelli/mode4_result.webp"
+                }
+            ]
+        },
+        {
+            "id": "beykent-ofis",
+            "klasor": "beykent_ofis",
+            "ad": "Beykent Ofis",
+            "kategori": "ofis",
+            "konum": "İstanbul",
+            "alan": null,
+            "yil": 2025,
+            "gorseller": [
+                {
+                    "b": "/images/beykent_ofis/4.webp",
+                    "k": "/images/_kucuk/beykent_ofis/4.jpg"
+                },
+                {
+                    "b": "/images/beykent_ofis/8.webp",
+                    "k": "/images/_kucuk/beykent_ofis/8.jpg"
+                },
+                {
+                    "b": "/images/beykent_ofis/6.webp",
+                    "k": "/images/_kucuk/beykent_ofis/6.jpg"
+                },
+                {
+                    "b": "/images/beykent_ofis/1.webp",
+                    "k": "/images/_kucuk/beykent_ofis/1.jpg"
+                },
+                {
+                    "b": "/images/beykent_ofis/2.webp",
+                    "k": "/images/beykent_ofis/2.webp"
+                },
+                {
+                    "b": "/images/beykent_ofis/3.webp",
+                    "k": "/images/beykent_ofis/3.webp"
+                },
+                {
+                    "b": "/images/beykent_ofis/5.webp",
+                    "k": "/images/_kucuk/beykent_ofis/5.jpg"
+                },
+                {
+                    "b": "/images/beykent_ofis/7.webp",
+                    "k": "/images/_kucuk/beykent_ofis/7.jpg"
+                }
+            ]
+        }
+    ]
+}
