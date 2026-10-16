@@ -1,14 +1,11 @@
 /* =========================================================
-   Balat Panel — proje ve fotoğraf yönetimi
-   Ekranlar: #/giris  #/ (liste)  #/proje/<id>  #/yeni  #/ayarlar
+   Portföy: sitenin ana sayfasındaki proje vitrini (önceki panelin ekranları)
    ========================================================= */
-(function(){
+(function () {
 'use strict';
-
-const $ = (s, k) => (k || document).querySelector(s);
-const $$ = (s, k) => [...(k || document).querySelectorAll(s)];
-const app = $('#app');
-const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const {$, $$, esc} = B;
+const DEMO = B.DEMO;
+const app = { set innerHTML(h) { B.sayfa(String(h).replace(/^\s*<div class="ekran">/, '').replace(/<\/div>\s*$/, '')); } };
 
 const GRUPLAR = {mimari:'Mimari', ic:'İç Mimari'};
 const KATEGORILER = {konut:'Konut', villa:'Villa', ticari:'Ticari', ofis:'Ofis', magaza:'Mağaza & Ticari', cafe:'Cafe & Restoran'};
@@ -25,13 +22,10 @@ const ikon = {
 let veri = null;                 // {mimari:[...], ic:[...]}
 let aktifGrup = 'mimari';
 try { aktifGrup = sessionStorage.getItem('bm-grup') || 'mimari'; } catch(e) {}
-let kirli = false;               // kaydedilmemiş form değişikliği
-let yuklemeSuruyor = 0;
 
 /* ---------- Tanıtım modu ----------
    github.io gibi PHP çalışmayan önizleme sunucularında panel kendini tanıtım moduna alır:
    ekranlar aynı çalışır ama hiçbir değişiklik sunucuya kaydedilmez (yalnızca bu tarayıcı sekmesinde tutulur). */
-const DEMO = /\.github\.io$/.test(location.hostname) || new URLSearchParams(location.search).has('demo');
 const DEMO_SIFRE = 'demo';
 const demo = {
   veri: null,
@@ -55,14 +49,14 @@ const demo = {
   async api(islem, b) {
     await new Promise(r => setTimeout(r, 180));            // gerçek sunucu hissi
     const giris = () => { try { return sessionStorage.getItem('bm-demo-giris') === '1'; } catch (e) { return false; } };
-    if (islem === 'oturum') return {ok: giris(), kullanici: giris() ? 'balat' : null};
+    if (islem === 'oturum') return {ok: giris(), kullanici: giris() ? {id: 1, ad_soyad: 'Balat Mimarlık', rol: 'yonetici', giris: 'balat', eposta: null, telefon: null, unvan: 'Tanıtım', musteri_id: null} : null, okunmamis: 0};
     if (islem === 'giris') {
       if (!b.kullanici || b.sifre !== DEMO_SIFRE) throw new Error('Kullanıcı adı veya şifre hatalı. (Tanıtım şifresi: demo)');
       try { sessionStorage.setItem('bm-demo-giris', '1'); } catch (e) {}
-      return {ok: true, kullanici: 'balat'};
+      return {ok: true, kullanici: {id: 1, ad_soyad: 'Balat Mimarlık', rol: 'yonetici', giris: 'balat', eposta: null, telefon: null, unvan: 'Tanıtım', musteri_id: null}};
     }
     if (islem === 'cikis') { try { sessionStorage.removeItem('bm-demo-giris'); } catch (e) {} return {ok: true}; }
-    if (!giris()) { git('#/giris'); throw new Error('Lütfen giriş yapın.'); }
+    if (!giris()) { B.git('#/giris'); throw new Error('Lütfen giriş yapın.'); }
     await this.yukle();
     const kopya = () => JSON.parse(JSON.stringify(this.veri));
     if (islem === 'projeler') return {ok: true, veri: kopya()};
@@ -96,7 +90,7 @@ const demo = {
     }
     if (islem === 'gorsel_sil') { const k = this.bul(b.id); k.p.gorseller = k.p.gorseller.filter(x => x.b !== b.b); this.kaydet(); return {ok: true}; }
     if (islem === 'sifre_degistir') throw new Error('Tanıtım sürümünde şifre değiştirilemez.');
-    throw new Error('Bilinmeyen işlem.');
+    throw new Error('Bu bölüm tanıtım sürümünde kapalı. Gerçek panelde kullanılabilir.');
   },
   async yukleGorsel(id, buyuk, kucuk, ilerleme) {
     for (let x = 1; x <= 10; x++) { await new Promise(r => setTimeout(r, 70)); ilerleme(x / 10); }
@@ -106,40 +100,16 @@ const demo = {
   },
   sifirla() { try { sessionStorage.removeItem('bm-demo-veri'); } catch (e) {} this.veri = null; },
 };
-if (DEMO) document.documentElement.classList.add('demo');
 const demoNotu = () => DEMO ? '<p class="demo-not">Tanıtım sürümü — burada yaptığınız değişiklikler gerçek siteye kaydedilmez.</p>' : '';
 
-/* ---------- Sunucu ---------- */
-async function api(islem, govde) {
-  if (DEMO) return demo.api(islem, govde || {});
-  const opt = { method: govde ? 'POST' : 'GET', headers: {'X-Balat-Panel':'1'}, credentials:'same-origin' };
-  if (govde) { opt.headers['Content-Type'] = 'application/json'; opt.body = JSON.stringify(govde); }
-  let r, j;
-  try { r = await fetch('api.php?islem=' + islem, opt); }
-  catch(e) { throw new Error('İnternet bağlantısı yok gibi görünüyor.'); }
-  try { j = await r.json(); } catch(e) { throw new Error('Sunucudan beklenmeyen cevap geldi (' + r.status + ').'); }
-  if (r.status === 401 && islem !== 'giris' && islem !== 'oturum') { veri = null; git('#/giris'); }
-  if (!j.ok && islem !== 'oturum') throw new Error(j.hata || 'Bir hata oluştu.');
-  return j;
-}
+/* ---------- Sunucu (ortak çekirdek üzerinden) ---------- */
+const api = (islem, govde) => govde ? B.yaz(islem, govde) : B.oku(islem);
 
 function yukle(id, buyuk, kucuk, ilerleme) {
   if (DEMO) return demo.yukleGorsel(id, buyuk, kucuk, ilerleme);
-  return new Promise((coz, red) => {
-    const f = new FormData();
-    f.append('id', id); f.append('buyuk', buyuk, 'b.jpg'); f.append('kucuk', kucuk, 'k.jpg');
-    const x = new XMLHttpRequest();
-    x.open('POST', 'api.php?islem=gorsel_yukle');
-    x.setRequestHeader('X-Balat-Panel', '1');
-    x.upload.onprogress = e => e.lengthComputable && ilerleme(e.loaded / e.total);
-    x.onload = () => {
-      let j = null; try { j = JSON.parse(x.responseText); } catch(e) {}
-      if (x.status === 401) { git('#/giris'); }
-      if (j && j.ok) coz(j.gorsel); else red(new Error(j && j.hata ? j.hata : 'Yükleme başarısız (' + x.status + ').'));
-    };
-    x.onerror = () => red(new Error('Bağlantı koptu.'));
-    x.send(f);
-  });
+  const f = new FormData();
+  f.append('id', id); f.append('buyuk', buyuk, 'b.jpg'); f.append('kucuk', kucuk, 'k.jpg');
+  return B.gonder('gorsel_yukle', f, ilerleme).then(j => j.gorsel);
 }
 
 async function veriyiAl(zorla) {
@@ -187,29 +157,6 @@ async function hazirla(dosya) {
   return {buyuk, kucuk, onizleme: URL.createObjectURL(kucuk)};
 }
 
-/* ---------- Ortak arayüz parçaları ---------- */
-let toastZaman;
-function toast(mesaj, hata) {
-  const t = $('#toast');
-  t.textContent = mesaj; t.className = 'acik' + (hata ? ' hata' : '');
-  clearTimeout(toastZaman); toastZaman = setTimeout(() => t.className = '', hata ? 4200 : 2400);
-}
-
-/** iOS tarzı alttan açılan seçenek listesi. Seçilen anahtarı (veya null) döndürür. */
-function secenek(baslik, aciklama, secenekler) {
-  return new Promise(coz => {
-    const p = document.createElement('div');
-    p.className = 'perde';
-    p.innerHTML = `<div class="sayfa" role="dialog" aria-modal="true">
-      <div class="sayfa-grup">${baslik || aciklama ? `<div class="sayfa-baslik">${baslik ? `<b>${esc(baslik)}</b>` : ''}${esc(aciklama || '')}</div>` : ''}
-      ${secenekler.map(s => `<button data-k="${s.k}" class="${s.tehlike ? 'tehlike' : ''}">${esc(s.ad)}</button>`).join('')}</div>
-      <div class="sayfa-grup"><button data-k="" class="kalin">Vazgeç</button></div></div>`;
-    document.body.appendChild(p);
-    requestAnimationFrame(() => p.classList.add('acik'));
-    const kapat = k => { p.classList.remove('acik'); setTimeout(() => p.remove(), 300); coz(k || null); };
-    p.addEventListener('click', e => { const b = e.target.closest('button'); if (b) kapat(b.dataset.k); else if (e.target === p) kapat(null); });
-  });
-}
 
 function buyukGoster(src) {
   const g = document.createElement('div');
@@ -226,83 +173,6 @@ function geriDugme(metin, hedef) {
   return `<button class="geri" data-git="${hedef}">${ikon.geri}<span>${esc(metin)}</span></button>`;
 }
 
-/* ---------- Yönlendirme ---------- */
-function git(hash) { if (location.hash === hash) goster(); else location.hash = hash; }
-
-async function goster() {
-  const h = location.hash || '#/';
-  window.scrollTo(0, 0);
-  try {
-    if (h === '#/giris') return girisEkrani();
-    if (!veri) {
-      const o = await api('oturum');
-      if (!o.ok) return git('#/giris');
-      app.innerHTML = '<div class="donen"></div>';
-      await veriyiAl();
-    }
-    if (h === '#/ayarlar') return ayarlarEkrani();
-    if (h === '#/yeni') return projeEkrani(null);
-    const m = h.match(/^#\/proje\/([\w-]+)$/);
-    if (m) return projeEkrani(m[1]);
-    return listeEkrani();
-  } catch (e) {
-    app.innerHTML = `<div class="ekran"><div class="bos"><p>${esc(e.message)}</p><button class="btn ikincil" onclick="location.reload()">Tekrar dene</button></div></div>`;
-  }
-}
-
-/* Kaydedilmemiş değişiklik varken çıkmadan önce sor */
-window.addEventListener('hashchange', async e => {
-  if (kirli || yuklemeSuruyor) {
-    const eski = e.oldURL.slice(e.oldURL.indexOf('#'));
-    const mesaj = yuklemeSuruyor ? 'Fotoğraflar hâlâ yükleniyor.' : 'Kaydedilmemiş değişiklikleriniz var.';
-    history.replaceState(null, '', eski);
-    const k = await secenek(mesaj, 'Çıkarsanız ' + (yuklemeSuruyor ? 'yüklenmeyen fotoğraflar kaybolur.' : 'değişiklikler kaybolur.'), [{k:'cik', ad:'Yine de çık', tehlike:true}]);
-    if (k !== 'cik') return;
-    kirli = false; yuklemeSuruyor = 0;
-    location.hash = e.newURL.slice(e.newURL.indexOf('#'));
-    return;
-  }
-  goster();
-});
-window.addEventListener('beforeunload', e => { if (kirli || yuklemeSuruyor) { e.preventDefault(); e.returnValue = ''; } });
-document.addEventListener('click', e => { const b = e.target.closest('[data-git]'); if (b) { e.preventDefault(); git(b.dataset.git); } });
-
-/* =========================================================
-   EKRAN: Giriş
-   ========================================================= */
-async function girisEkrani() {
-  // Zaten giriş yapılmışsa doğrudan listeye geç (ana ekran ikonundan açılışta)
-  try { if ((await api('oturum')).ok) return git('#/'); } catch (e) {}
-  const ios = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-  const anaEkranda = window.navigator.standalone || matchMedia('(display-mode: standalone)').matches;
-  app.innerHTML = `<form class="giris" id="girisForm" novalidate>
-    <img class="logo" src="../images/balatlogo.png" alt="Balat Mimarlık">
-    <h1>Yönetim Paneli</h1>
-    ${DEMO ? '<div class="demo-not" style="text-align:center;margin:-20px 0 22px">Tanıtım sürümü · Şifre: <b>demo</b></div>' : ''}
-    <div class="hata-kutu gizli" id="girisHata" role="alert"></div>
-    <div class="kart">
-      <div class="alan"><label for="kAd">Kullanıcı</label><input id="kAd" ${DEMO ? 'value="balat"' : ''} name="username" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false" required></div>
-      <div class="alan"><label for="kSifre">Şifre</label><input id="kSifre" ${DEMO ? 'value="demo"' : ''} name="password" type="password" autocomplete="current-password" required></div>
-    </div>
-    <button class="btn vurgu" id="girisBtn">Giriş yap</button>
-    ${ios && !anaEkranda ? `<div class="ipucu"><b>Uygulama gibi kullanın</b>Safari’de alttaki ${ikon.paylas} <b style="display:inline">Paylaş</b> düğmesine dokunun, ardından <b style="display:inline">“Ana Ekrana Ekle”</b> seçin. Panel, telefonunuzda Balat ikonuyla açılır.</div>` : ''}
-  </form>`;
-  const f = $('#girisForm'), btn = $('#girisBtn'), hk = $('#girisHata');
-  f.onsubmit = async e => {
-    e.preventDefault();
-    hk.classList.add('gizli');
-    const kullanici = $('#kAd').value.trim(), sifre = $('#kSifre').value;
-    if (!kullanici || !sifre) { hk.textContent = 'Kullanıcı adı ve şifre girin.'; hk.classList.remove('gizli'); return; }
-    btn.disabled = true; btn.innerHTML = '<span class="donen"></span>';
-    try {
-      await api('giris', {kullanici, sifre});
-      veri = null; git('#/');
-    } catch (err) {
-      hk.textContent = err.message; hk.classList.remove('gizli');
-      btn.disabled = false; btn.textContent = 'Giriş yap';
-    }
-  };
-}
 
 /* =========================================================
    EKRAN: Proje listesi
@@ -310,15 +180,14 @@ async function girisEkrani() {
 function listeEkrani() {
   const liste = veri[aktifGrup];
   app.innerHTML = `<div class="ekran">
-    ${ustBar('<span></span>', `<button class="ikon-dugme" data-git="#/ayarlar" aria-label="Ayarlar">${ikon.ayar}</button>`)}
-    <h1 class="baslik">Projeler</h1>${demoNotu()}
+    <h1 class="baslik">Portföy</h1><p class="alt-yazi">Sitenin ana sayfasındaki proje vitrini</p>${demoNotu()}
     <div class="segment" role="tablist">
       ${Object.entries(GRUPLAR).map(([k, ad]) => `<button role="tab" data-grup="${k}" class="${k === aktifGrup ? 'aktif' : ''}" aria-selected="${k === aktifGrup}">${ad}<small>${veri[k].length}</small></button>`).join('')}
     </div>
     ${liste.length ? `<ul class="liste" id="liste">${liste.map(satir).join('')}</ul>
       <p class="not">Sitede bu sırayla görünür. Sırayı değiştirmek için sağdaki ${ikon.tutamak.replace('<svg', '<svg style="width:14px;height:14px;vertical-align:-2px"')} tutamağı basılı tutup sürükleyin.</p>`
       : `<div class="kart bos">Bu bölümde henüz proje yok.</div>`}
-    <div class="alt-dugme"><button class="btn vurgu" data-git="#/yeni">${ikon.arti} Yeni proje</button></div>
+    <div class="alt-dugme"><button class="btn vurgu" data-git="#/portfoy/yeni">${ikon.arti} Yeni proje</button></div>
   </div>`;
 
   $$('[data-grup]').forEach(b => b.onclick = () => {
@@ -335,8 +204,8 @@ function listeEkrani() {
       const idler = $$('.satir', ul).map(s => s.dataset.id);
       const eski = veri[aktifGrup];
       veri[aktifGrup] = idler.map(id => eski.find(p => p.id === id));
-      try { await api('projeleri_sirala', {grup: aktifGrup, idler}); toast('Sıralama kaydedildi'); }
-      catch (e) { toast(e.message, true); await veriyiAl(true); listeEkrani(); }
+      try { await api('projeleri_sirala', {grup: aktifGrup, idler}); B.toast('Sıralama kaydedildi'); }
+      catch (e) { B.toast(e.message, true); await veriyiAl(true); listeEkrani(); }
     }
   });
 }
@@ -344,7 +213,7 @@ function listeEkrani() {
 function satir(p) {
   const n = p.gorseller.length, kapak = n ? p.gorseller[0].k : '';
   return `<li class="satir" data-id="${esc(p.id)}">
-    <button class="satir-ac" data-git="#/proje/${esc(p.id)}">
+    <button class="satir-ac" data-git="#/portfoy/proje/${esc(p.id)}">
       ${kapak ? `<img class="kucuk-resim" src="${esc(kapak)}" alt="" loading="lazy">` : '<span class="kucuk-resim"></span>'}
       <span class="satir-metin"><b>${esc(p.ad)}</b>
         <span>${esc(KATEGORILER[p.kategori] || p.kategori)} · ${n ? n + ' fotoğraf' : '<span class="uyari">Fotoğraf yok · sitede görünmez</span>'}</span></span>
@@ -358,14 +227,14 @@ function satir(p) {
    ========================================================= */
 function projeEkrani(id) {
   const bulunan = id ? projeBul(id) : null;
-  if (id && !bulunan) { toast('Proje bulunamadı.', true); return git('#/'); }
+  if (id && !bulunan) { B.toast('Proje bulunamadı.', true); return B.git('#/portfoy'); }
   const p = bulunan ? bulunan.p : {ad:'', kategori: aktifGrup === 'ic' ? 'konut' : 'villa', konum:'İstanbul', alan:null, yil:new Date().getFullYear(), gorseller:[]};
   let grup = bulunan ? bulunan.g : aktifGrup;
   const yeni = !bulunan;
-  kirli = false;
+  B.kirli = false;
 
   app.innerHTML = `<div class="ekran">
-    ${ustBar(geriDugme('Projeler', '#/'), yeni ? '' : `<a class="geri" href="/#${grup === 'ic' ? 'ic-mimari' : 'projeler'}" target="_blank" rel="noopener" style="padding-right:0">Sitede gör ↗</a>`, true)}
+    ${ustBar(geriDugme('Portföy', '#/portfoy'), yeni ? '' : `<a class="geri" href="/#${grup === 'ic' ? 'ic-mimari' : 'projeler'}" target="_blank" rel="noopener" style="padding-right:0">Sitede gör ↗</a>`, true)}
     <h1 class="baslik" id="pBaslik">${yeni ? 'Yeni proje' : esc(p.ad)}</h1>${demoNotu()}
     <form id="pForm" class="kart" novalidate autocomplete="off">
       <div class="alan"><label for="fAd">Proje adı</label><input id="fAd" value="${esc(p.ad)}" placeholder="Örn. Sarıyer Villa" maxlength="80" enterkeyhint="next"></div>
@@ -387,7 +256,7 @@ function projeEkrani(id) {
   </div>`;
 
   const form = $('#pForm'), kaydet = $('#pKaydet');
-  const degisti = () => { kirli = true; kaydet.disabled = false; };
+  const degisti = () => { B.kirli = true; kaydet.disabled = false; };
   form.addEventListener('input', degisti);
   form.addEventListener('change', degisti);
   $$('#fGrup button').forEach(b => b.onclick = () => {
@@ -406,16 +275,16 @@ function projeEkrani(id) {
       ad: $('#fAd').value.trim(), kategori: $('#fKat').value, konum: $('#fKonum').value.trim(),
       alan: $('#fAlan').value.replace(/\D/g, ''), yil: $('#fYil').value.replace(/\D/g, ''),
     };
-    if (!proje.ad) { toast('Proje adı boş olamaz.', true); $('#fAd').focus(); return; }
+    if (!proje.ad) { B.toast('Proje adı boş olamaz.', true); $('#fAd').focus(); return; }
     kaydet.disabled = true; const eskiMetin = kaydet.textContent; kaydet.innerHTML = '<span class="donen"></span>';
     try {
       const j = await api('proje_kaydet', {id: yeni ? '' : p.id, grup, proje});
       await veriyiAl(true);
-      kirli = false; aktifGrup = grup;
+      B.kirli = false; aktifGrup = grup;
       try { sessionStorage.setItem('bm-grup', grup); } catch(e) {}
-      if (yeni) { toast('Proje oluşturuldu — şimdi fotoğraf ekleyin'); git('#/proje/' + j.proje.id); }
-      else { toast('Kaydedildi'); $('#pBaslik').textContent = j.proje.ad; kaydet.textContent = eskiMetin; }
-    } catch (e) { toast(e.message, true); kaydet.disabled = false; kaydet.textContent = eskiMetin; }
+      if (yeni) { B.toast('Proje oluşturuldu — şimdi fotoğraf ekleyin'); B.git('#/portfoy/proje/' + j.proje.id); }
+      else { B.toast('Kaydedildi'); $('#pBaslik').textContent = j.proje.ad; kaydet.textContent = eskiMetin; }
+    } catch (e) { B.toast(e.message, true); kaydet.disabled = false; kaydet.textContent = eskiMetin; }
   };
 
   if (yeni) { setTimeout(() => $('#fAd').focus(), 300); return; }
@@ -439,8 +308,8 @@ function projeEkrani(id) {
     const k = projeBul(p.id).p;
     k.gorseller = sira.map(b => k.gorseller.find(x => x.b === b));
     ciz();
-    try { await api('gorselleri_sirala', {id: p.id, sira}); toast('Sıralama kaydedildi'); }
-    catch (e) { toast(e.message, true); await veriyiAl(true); ciz(); }
+    try { await api('gorselleri_sirala', {id: p.id, sira}); B.toast('Sıralama kaydedildi'); }
+    catch (e) { B.toast(e.message, true); await veriyiAl(true); ciz(); }
   };
 
   Sortable.create(izgara, {
@@ -455,7 +324,7 @@ function projeEkrani(id) {
     if (!li || !li.dataset.b || li.classList.contains('yukleniyor')) return;
     const k = projeBul(p.id).p, i = k.gorseller.findIndex(x => x.b === li.dataset.b);
     if (i < 0) return;
-    const sec = await secenek(null, `Fotoğraf ${i + 1} / ${k.gorseller.length}`, [
+    const sec = await B.secenek(null, `Fotoğraf ${i + 1} / ${k.gorseller.length}`, [
       ...(i > 0 ? [{k:'kapak', ad:'Kapak fotoğrafı yap'}] : []),
       {k:'buyuk', ad:'Büyük görüntüle'},
       {k:'sil', ad:'Fotoğrafı sil', tehlike:true},
@@ -463,16 +332,16 @@ function projeEkrani(id) {
     if (sec === 'buyuk') buyukGoster(k.gorseller[i].b);
     if (sec === 'kapak') {
       const [gr] = k.gorseller.splice(i, 1); k.gorseller.unshift(gr); ciz();
-      try { await api('gorselleri_sirala', {id: p.id, sira: k.gorseller.map(x => x.b)}); toast('Kapak fotoğrafı değişti'); }
-      catch (err) { toast(err.message, true); await veriyiAl(true); ciz(); }
+      try { await api('gorselleri_sirala', {id: p.id, sira: k.gorseller.map(x => x.b)}); B.toast('Kapak fotoğrafı değişti'); }
+      catch (err) { B.toast(err.message, true); await veriyiAl(true); ciz(); }
     }
     if (sec === 'sil') {
-      const onay = await secenek('Fotoğraf silinsin mi?', 'Fotoğraf siteden kaldırılır. Sunucuda çöp kutusuna taşınır, gerekirse geri alınabilir.', [{k:'evet', ad:'Sil', tehlike:true}]);
+      const onay = await B.secenek('Fotoğraf silinsin mi?', 'Fotoğraf siteden kaldırılır. Sunucuda çöp kutusuna taşınır, gerekirse geri alınabilir.', [{k:'evet', ad:'Sil', tehlike:true}]);
       if (onay !== 'evet') return;
       try {
         await api('gorsel_sil', {id: p.id, b: k.gorseller[i].b});
-        k.gorseller.splice(i, 1); ciz(); toast('Fotoğraf silindi');
-      } catch (err) { toast(err.message, true); }
+        k.gorseller.splice(i, 1); ciz(); B.toast('Fotoğraf silindi');
+      } catch (err) { B.toast(err.message, true); }
     }
   });
 
@@ -481,7 +350,7 @@ function projeEkrani(id) {
   girdi.onchange = async () => {
     const dosyalar = [...girdi.files];
     if (!dosyalar.length) return;
-    yuklemeSuruyor += dosyalar.length;
+    B.yuklemeSuruyor += dosyalar.length;
     // Önce yer tutucular, sonra sırayla hazırlayıp yükle (telefon belleğini yormamak için tek tek)
     const kutular = dosyalar.map(() => {
       const li = document.createElement('li');
@@ -508,65 +377,27 @@ function projeEkrani(id) {
         yz.textContent = 'Hata';
         setTimeout(() => { li.dataset.bitti = '1'; li.remove(); }, 5000);
       }
-      yuklemeSuruyor = Math.max(0, yuklemeSuruyor - 1);
+      B.yuklemeSuruyor = Math.max(0, B.yuklemeSuruyor - 1);
       // Izgarayı yeniden çiz; bekleyen ve hatalı kutuları sona geri ekle
       ciz(); izgara.append(...kutular.filter(k => !k.dataset.bitti));
     }
-    if (hatalar.length) toast(`${basarili} fotoğraf eklendi, ${hatalar.length} yüklenemedi: ${hatalar[0]}`, true);
-    else toast(basarili === 1 ? 'Fotoğraf eklendi' : `${basarili} fotoğraf eklendi`);
+    if (hatalar.length) B.toast(`${basarili} fotoğraf eklendi, ${hatalar.length} yüklenemedi: ${hatalar[0]}`, true);
+    else B.toast(basarili === 1 ? 'Fotoğraf eklendi' : `${basarili} fotoğraf eklendi`);
   };
 
   $('#pSil').onclick = async () => {
     const k = projeBul(p.id).p;
-    const onay = await secenek(`“${k.ad}” silinsin mi?`, `Proje ve ${k.gorseller.length} fotoğrafı siteden kaldırılır. Fotoğraflar sunucuda çöp kutusuna taşınır.`, [{k:'evet', ad:'Projeyi sil', tehlike:true}]);
+    const onay = await B.secenek(`“${k.ad}” silinsin mi?`, `Proje ve ${k.gorseller.length} fotoğrafı siteden kaldırılır. Fotoğraflar sunucuda çöp kutusuna taşınır.`, [{k:'evet', ad:'Projeyi sil', tehlike:true}]);
     if (onay !== 'evet') return;
-    try { await api('proje_sil', {id: p.id}); await veriyiAl(true); kirli = false; toast('Proje silindi'); git('#/'); }
-    catch (e) { toast(e.message, true); }
+    try { await api('proje_sil', {id: p.id}); await veriyiAl(true); B.kirli = false; B.toast('Proje silindi'); B.git('#/portfoy'); }
+    catch (e) { B.toast(e.message, true); }
   };
 }
 
-/* =========================================================
-   EKRAN: Ayarlar
-   ========================================================= */
-function ayarlarEkrani() {
-  app.innerHTML = `<div class="ekran">
-    ${ustBar(geriDugme('Projeler', '#/'), '', true)}
-    <h1 class="baslik">Ayarlar</h1>${demoNotu()}
-    <h2 class="alt-baslik">Şifre değiştir</h2>
-    <form class="kart" id="sForm" novalidate>
-      <input type="text" name="username" autocomplete="username" value="balat" hidden>
-      <div class="alan"><label for="sEski">Mevcut</label><input id="sEski" type="password" autocomplete="current-password"></div>
-      <div class="alan"><label for="sYeni">Yeni</label><input id="sYeni" type="password" autocomplete="new-password" placeholder="En az 10 karakter"></div>
-      <div class="alan"><label for="sYeni2">Yeni (tekrar)</label><input id="sYeni2" type="password" autocomplete="new-password"></div>
-    </form>
-    <div class="yan-yana"><button class="btn ikincil" id="sKaydet">Şifreyi değiştir</button></div>
-    <p class="not">Şifre değişince diğer telefonlardaki oturumlar kapanır; oralarda yeni şifreyle tekrar giriş yapılır.</p>
-
-    <h2 class="alt-baslik">Site</h2>
-    <div class="kart">
-      <a class="alan" href="/" target="_blank" rel="noopener" style="color:inherit">Siteyi aç<span style="margin-left:auto;color:var(--soluk)">↗</span></a>
-    </div>
-    <p class="not">Her değişiklikten önce proje listesinin yedeği alınır (son 30 sürüm). Silinen fotoğraflar sunucuda <b>images/_silinen</b> klasörüne taşınır; yanlışlıkla silinen bir şey olursa geri getirilebilir.</p>
-
-    ${DEMO ? '<div class="yan-yana" style="margin-top:24px"><button class="btn ikincil" id="demoSifirla">Tanıtımı baştan başlat</button></div><p class="not">Yaptığınız tüm denemeleri siler, projeleri sitedeki haline döndürür.</p>' : ''}
-    <div style="margin-top:36px"><button class="btn tehlike" id="cikis">Çıkış yap</button></div>
-  </div>`;
-  $('#sKaydet').onclick = async () => {
-    const eski = $('#sEski').value, yeni = $('#sYeni').value, yeni2 = $('#sYeni2').value;
-    if (!eski || !yeni) return toast('Tüm alanları doldurun.', true);
-    if (yeni.length < 10) return toast('Yeni şifre en az 10 karakter olmalı.', true);
-    if (yeni !== yeni2) return toast('Yeni şifreler aynı değil.', true);
-    try { await api('sifre_degistir', {eski, yeni}); toast('Şifre değiştirildi'); $('#sForm').reset(); }
-    catch (e) { toast(e.message, true); }
-  };
-  if ($('#demoSifirla')) $('#demoSifirla').onclick = async () => { demo.sifirla(); await veriyiAl(true); toast('Tanıtım baştan başladı'); git('#/'); };
-  $('#cikis').onclick = async () => {
-    const k = await secenek(null, 'Bu telefondan çıkış yapılsın mı?', [{k:'evet', ad:'Çıkış yap', tehlike:true}]);
-    if (k !== 'evet') return;
-    try { await api('cikis', {}); } catch (e) {}
-    veri = null; git('#/giris');
-  };
-}
-
-goster();
+/* ---------- Ortak çekirdeğe bağla ---------- */
+if (DEMO) { B.portfoyDemoApi = (islem, govde) => demo.api(islem, govde); B.portfoyDemoSifirla = () => demo.sifirla(); }
+const portfoyYetkisi = () => { if (!B.yoneticiMi()) { B.git('#/'); return false; } return true; };
+B.rota(/^#\/portfoy$/, async () => { if (!portfoyYetkisi()) return; B.yukleniyor(); await veriyiAl(); listeEkrani(); });
+B.rota(/^#\/portfoy\/proje\/([\w-]+)$/, async id => { if (!portfoyYetkisi()) return; B.yukleniyor(); await veriyiAl(); projeEkrani(id); });
+B.rota(/^#\/portfoy\/yeni$/, async () => { if (!portfoyYetkisi()) return; B.yukleniyor(); await veriyiAl(); projeEkrani(null); });
 })();
